@@ -11,7 +11,7 @@ There are two files:
 
 To evaluate a Sudoku you can change the `board`-variable inside the Program oder use `board-import` to convert a string like 040300000000000100007000546000702419080400020000009000000030060500006081030500000 to a 2D-array. The example Sudoku looks like that:
 
-![sudoku-20250218T175248](https://github.com/user-attachments/assets/e666c659-f3de-48f5-be6d-cb34f02d014d)
+![sudoku-20250218T175248](https://github.com/user-attachments/assets/00e60298-b91f-4d69-be3f-16a7813620e7)
 
 The Program always tries the easiest strategy before jumping to the next difficult one. When evaluating, it outputs a log of the solution like this one for the example sudoku:
 ```
