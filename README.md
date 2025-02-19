@@ -1,19 +1,20 @@
-# Sudoku-evaluating-program
+# Sudoku Evaluator
 
-This project was developed as part of a two-part article that appeared in c't and on heise+. The basic idea is to evaluate Sudokus based on the used Strategies.
+This project was developed as part of a two part article that appeared in [c't magazine](https://www.heise.de/select/ct/2023/10/2305515285555975873) and on [heise+](https://heise.de/-8645547). The basic idea is to evaluate Sudokus based on the strategies needed to solve.
 
 There are two files:
 
-- `evaluate_sudoku.py` contains the whole Project. Implemented are naked Single, hidden Single, naked Pair, hidden Pair, pointing Pair and X-Wing.
-- `evaluate_sudoku_small.py` is a smaller version that contains just naked Single and hidden Single, that are the Topic from the first Article.
+- `evaluate_sudoku.py` contains the whole project. Implemented are the strategies Naked Single, Hidden Single, Naked Pair, Hidden Pair, Pointing Pair and X-Wing.
+- `evaluate_sudoku_small.py` is a smaller version that contains just naked Single and Hidden Single, that are the topic of the first article.
 
 ## Usage
 
-To evaluate a Sudoku you can change the `board`-variable inside the Program oder use `board-import` to convert a string like 040300000000000100007000546000702419080400020000009000000030060500006081030500000 to a 2D-array. The example Sudoku looks like that:
+To evaluate a Sudoku you can change the variable `board` inside the program oder use `board-import` to convert a string like `040300000000000100007000546000702419080400020000009000000030060500006081030500000` to a 2D array. The example Sudoku looks like that:
 
-![sudoku-20250218T175248](https://github.com/user-attachments/assets/e666c659-f3de-48f5-be6d-cb34f02d014d)
+![sudoku-20250218T175248](https://github.com/user-attachments/assets/5f64ac8a-2132-4323-b5f2-676ecb913009)
 
-The Program always tries the easiest strategy before jumping to the next difficult one. When evaluating, it outputs a log of the solution like this one for the example sudoku:
+The program always tries the easiest strategy before jumping to the one with the next higher difficulty. When evaluating, it outputs a log of the solution like the following for the example Sudoku:
+
 ```
 Hidden Single found: 3 at [2, 0]
 Hidden Single found: 3 at [3, 2]
@@ -93,7 +94,7 @@ Score: 4.228070175438597
 8 3 6 5 9 1 2 7 4
 ```
 
-If it cant solve the Sudoku it outputs the current state of the Sudoku.
+If it can't solve the Sudoku it outputs the last state of the Sudoku.
 
 ## Copyright
 

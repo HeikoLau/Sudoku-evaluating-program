@@ -14,7 +14,7 @@ class Sudoku:
 		original_empty_cells = self.count_empty_cells()
 		print(self.candidates)
 
-		# solve Sudoku until its not anymore solveable
+		# solve Sudoku until no more strategies can be applied
 		while(self.count_empty_cells() > 0):
 			# To track if any progress is made
 			progress = False
@@ -41,10 +41,10 @@ class Sudoku:
 
 			# If no progress was made, try Hidden Pair
 			if not progress:
-			 	solved_count = self.find_hidden_pair()
-			 	if solved_count > 0:
-			 		score["Hidden Pair"] += solved_count
-			 		progress = True
+				solved_count = self.find_hidden_pair()
+				if solved_count > 0:
+					score["Hidden Pair"] += solved_count
+					progress = True
 
 			# If no progress was made, try pointing pairs
 			if not progress:
@@ -87,7 +87,7 @@ class Sudoku:
 						break
 		return solved
 
-	# method solves every cell with a single candidate
+	# Solve every cell with a single candidate
 	def find_naked_single(self):
 		solved = 0
 		for row in range(9):
@@ -100,7 +100,7 @@ class Sudoku:
 					solved += 1
 		return solved
 
-	# method finds usable naked pairs that deletes candidates
+	# Find naked pairs that delete candidates
 	def find_naked_pair(self):
 		for row in range(9):
 			for column in range(9):
@@ -128,13 +128,13 @@ class Sudoku:
 			for column in range(9):
 				for pair in pairs:
 					if self.pair_is_in_cell(pair, row, column) and self.pair_is_unique(pair, row, column):
-						# trying to find a potential second pair to form a hidden pair
+						# try to find a potential second pair to form a hidden pair
 						row_pair, col_pair = self.get_second_hidden_pair(pair, row, column)
 						# if no second pair is found continue with the next cell
 						if row_pair is None:
 							continue
 
-						# if second pair to form the hidden pair isnt unique continue with next cell
+						# if second pair to form the hidden pair isn't unique continue with next cell
 						if not self.pair_is_unique(pair, row_pair, col_pair):
 							continue
 
@@ -155,10 +155,10 @@ class Sudoku:
 	# finds pointing pairs so it can delete candidates in a row or column (intersection method)
 	def find_pointing_pair(self):
 		removed = 0
-		# iterating through every box
+		# iterate through every box
 		for box_row in range(0, 9, 3):
 			for box_col in range(0, 9, 3):
-					# creating a smaller list just for the box
+					# create a smaller list just for the box
 					box_values = []
 					for r in range(box_row, box_row + 3):
 						for c in range(box_col, box_col + 3):
@@ -171,17 +171,17 @@ class Sudoku:
 						# flatten the row and count how often a number appear in a row
 						row_values = ''.join(self.candidates[r][box_col:box_col + 3])
 						count = Counter(row_values)
-						#checking every number
+						# check every number
 						for num in '123456789':
 							# if the number just appears two times in a row, but not in the rest of the box
 							if count[num] == 2 and count[num] == box_values.count(num):
-								# Track coordinates of all occurrences of num in the row
+								# track coordinates of all occurrences of num in the row
 								positions = []
 								for position_col in range(9):
 									if num in self.candidates[r][position_col]:
 										positions.append(position_col)
 
-								# Delete this number from the rest of the row (outside our box)
+								# delete this number from the rest of the row (outside our box)
 								for position_col in positions:
 									if position_col < box_col or position_col >= box_col + 3:
 										self.candidates[r][position_col] = self.candidates[r][position_col].replace(num, '')
@@ -201,13 +201,13 @@ class Sudoku:
 						for num in '123456789':
 							# if the number just appears two times in a column, bot not in the rest of the box
 							if count[num] == 2 and count[num] == box_values.count(num):
-								# Track coordinates of all occurrences of num in the row
+								# track coordinates of all occurrences of num in the row
 								positions = []
 								for position_row in range(9):
 									if num in self.candidates[position_row][c]:
 										positions.append(position_row)
 
-								# Delete this number from the rest of the column (outside our box)
+								# delete this number from the rest of the column (outside our box)
 								for position_row in positions:
 									if position_row < box_row or position_row >= box_row + 3:
 										self.candidates[position_row][c] = self.candidates[position_row][c].replace(num, '')
@@ -221,21 +221,21 @@ class Sudoku:
 
 	def find_x_wing(self):
 		removed = 0
-		# Iterate over all possible numbers (1-9)
+		# iterate over all possible numbers (1-9)
 		for num in '123456789':
         	# 1. Search for a row-based X-Wing
 			for row1 in range(9):
 				for row2 in range(row1 + 1, 9):  # Make sure we're looking at two different rows
-				# Find columns where num appears in both row1 and row2
+				# find columns where num appears in both row1 and row2
 					cols_row1 = []
 					cols_row2 = []
                 
-					# Scan col1
+					# scan col1
 					for col in range(9):
 						if num in self.candidates[row1][col]:
 							cols_row1.append(col)
 	                            
-					# Scan col2
+					# scan col2
 					for col in range(9):
 						if num in self.candidates[row2][col]:
 							cols_row2.append(col)
@@ -423,13 +423,13 @@ class Sudoku:
 			return True
 		return False
 
-	# helper function to identify if digits of the pair occure in the cell
+	# helper function to identify if digits of the pair occur in the cell
 	def digit_of_pair_is_in_cell(self, pair, row, column):
 		if pair[0] in self.candidates[row][column] or pair[1] in self.candidates[row][column]:
 			return True
 		return False
 
-	# helper function to identify if a pair truly unique in a row, column or box
+	# helper function to identify if a pair is truly unique in a row, column or box
 	def pair_is_unique(self, pair, row, column):
 		# check row and column
 		row_count = col_count = box_count = 0
@@ -458,7 +458,7 @@ class Sudoku:
 		# If the pair is not unique in row, column, or box
 		return False		
 
-	# checks if candidate string f.e('1') is unique in a row, column or cell
+	# check if candidate string is unique in a row, column or cell
 	def number_is_unique(self, row, column, number):
 		# check if the number is unique in a row or in a column
 		row_count = col_count = box_count = 0
