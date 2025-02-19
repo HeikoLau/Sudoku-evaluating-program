@@ -559,17 +559,6 @@ def main():
              [0, 0, 0, 0, 9, 6, 1, 0, 0],
              [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
-    # test board that must be solved with one naked pair in a row
-	# board = [[0, 0, 0, 5, 0, 0, 0, 0, 0],
-	# 		[0, 2, 0, 0, 0, 7, 0, 0, 0],
-	# 		[0, 0, 4, 8, 0, 0, 7, 0, 5],
-	# 		[0, 0, 0, 0, 0, 0, 2, 6, 0],
-	# 		[0, 0, 0, 3, 1, 0, 0, 0, 0],
-	# 		[0, 1, 5, 0, 0, 0, 4, 0, 0],
-	# 		[0, 0, 0, 7, 0, 4, 0, 0, 0],
-	# 		[8, 7, 6, 0, 0, 2, 9, 0, 0],
-	# 		[0, 0, 0, 0, 0, 6, 0, 0, 3]]
-
 	#example board that must be solved with naked pairs, hidden pairs, pointing pairs and Skyscraper
 	# board = [[0, 0, 4, 0, 0, 0, 0, 0, 0],
 	# 		[0, 9, 0, 0, 7, 0, 4, 0, 0],
@@ -603,25 +592,24 @@ def main():
 	# 		[0, 8, 0, 3, 0, 0, 0, 0, 0],
 	# 		[2, 0, 0, 0, 0, 8, 0, 0, 0]]
 
-	# parser = argparse.ArgumentParser(description="Solve a Sudoku puzzle")
-	# parser.add_argument('Sudoku-String', type=str, help="A string representing the Sudoku puzzle (81 characters).")
-	# args = parser.parse_args()
+	parser = argparse.ArgumentParser(description="Solve a Sudoku puzzle")
+	parser.add_argument('Sudoku-String', type=str, help="A string representing the Sudoku puzzle (81 characters).")
+	args = parser.parse_args()
 
-	# sudoku_string = args.sudoku
-	# if len(sudoku_string) != 81:
-	# 	print("Error: The Sudoku string must contain exactly 81 characters.")
-	# 	return
-	# else:
-	# 	board_import = [[int(num) for num in sudoku_string[i:i+9]] for i in range(0, len(sudoku_string), 9)]
+	sudoku_string = args.sudoku
+	if len(sudoku_string) != 81:
+		print("Error: The Sudoku string must contain exactly 81 characters.")
+		return
+	else:
+		board_import = [[int(num) for num in sudoku_string[i:i+9]] for i in range(0, len(sudoku_string), 9)]
 
 	# import string from sudoku.coach or other sites
 	# sudoku_string = '050000420008000030900000080820500300060009000000600209200300000040008000500907600' # difficult sudoku with pointing pairs, hidden pairs and unknown techniques
 	# sudoku_string = '000060800000900002678000009300800006000420000700000020107058000000100605002030090' # x wing necessary and one skyscraper
-	sudoku_string = '040300000000000100007000546000702419080400020000009000000030060500006081030500000' # 4 naked pairs, 3 hidden pairs, 1 pointing pair
-	board_import = [[int(num) for num in sudoku_string[i:i+9]] for i in range(0, 81, 9)]
+	# sudoku_string = '040300000000000100007000546000702419080400020000009000000030060500006081030500000' # 4 naked pairs, 3 hidden pairs, 1 pointing pair
+	# board_import = [[int(num) for num in sudoku_string[i:i+9]] for i in range(0, 81, 9)]
 
 	sudoku = Sudoku(board_import)
-	sudoku.print_Sudoku()
 	print(f"Score: {sudoku.evaluate_Sudoku()}")
 	sudoku.print_Sudoku()
 
