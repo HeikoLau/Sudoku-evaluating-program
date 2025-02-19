@@ -13,7 +13,7 @@ To evaluate a Sudoku you can change the `board`-variable inside the Program oder
 
 ![sudoku-20250218T175248](https://github.com/user-attachments/assets/e666c659-f3de-48f5-be6d-cb34f02d014d)
 
-The programme always tries the easiest strategy before jumping to the next most difficult one. When evaluating, it outputs a log of the solution like this one, for example:
+The Program always tries the easiest strategy before jumping to the next difficult one. When evaluating, it outputs a log of the solution like this one for the example sudoku:
 ```
 Hidden Single found: 3 at [2, 0]
 Hidden Single found: 3 at [3, 2]
@@ -93,6 +93,7 @@ Score: 4.228070175438597
 8 3 6 5 9 1 2 7 4
 ```
 
+If it cant solve the Sudoku it outputs the current state of the Sudoku.
 
 ## Copyright
 
