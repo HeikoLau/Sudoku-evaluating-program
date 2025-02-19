@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import itertools
-import argparse
 from collections import Counter
 
 class Sudoku:
