@@ -66,7 +66,7 @@ class Sudoku:
                         break
         return solved
 
-    # checks if candidate string f.e('1') is unique in a row, column or cell
+    # checks if candidate string is unique in a row, column or cell
     def number_is_unique(self, row, column, number):
         # check if the number is unique in a row or in a column
         row_count = col_count = box_count = 0
@@ -166,7 +166,7 @@ def main():
         [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
     sudoku_string = '040000080007000060000010000410000200000005000030000000006007003005806000000000001' # example for article 1
-    board_import = [[int(num) for num in sudoku_string[i:i+9]] for i in range(0, 81, 9)]
+    board_import = [[int(num) for num in sudoku_string[i:i+9]] for i in range(0, len(sudoku_string), 9)]
 
     sudoku = Sudoku(board_import)
     print(f"Score: {sudoku.evaluate()}")
