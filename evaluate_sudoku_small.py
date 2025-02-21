@@ -165,7 +165,8 @@ def main():
         [0, 0, 0, 0, 9, 6, 1, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
-    sudoku_string = '040000080007000060000010000410000200000005000030000000006007003005806000000000001' # example for article 1
+    # sudoku_string = '104800907009200068302000000400580000070004080000006570000193050008000709003050400' # simple sudoku example
+    sudoku_string = '040000080007000060000010000410000200000005000030000000006007003005806000000000001' # sudoku example with 17 clues for article 1
     board_import = [[int(num) for num in sudoku_string[i:i+9]] for i in range(0, len(sudoku_string), 9)]
 
     sudoku = Sudoku(board_import)
