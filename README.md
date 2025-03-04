@@ -1,6 +1,6 @@
 # Sudoku Evaluator
 
-This project was developed as part of a two part article that appeared in [c't magazine](https://www.heise.de/select/ct/2023/10/2305515285555975873) and on [heise+](https://heise.de/-8645547). The basic idea is to evaluate Sudokus based on the strategies needed to solve.
+This project was developed as part of a two part article that appeared in [c't magazine](https://www.heise.de/select/ct/2023/10/2305515285555975873) and on [heise+](https://heise.de/-8645547). The basic idea is to evaluate Sudokus based on the strategies needed to solve. You can read the first part of the evaluating program on [heise+](https://www.heise.de/hintergrund/Wie-man-mit-einem-Python-Programm-die-Schwierigkeit-von-Sudokus-bewertet-10291201.html).
 
 There are two files:
 
