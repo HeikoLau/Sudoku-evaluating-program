@@ -244,12 +244,10 @@ class Sudoku:
                     if len(cols_row1) == 2 and len(cols_row2) == 2:
                     # Check for X-Wing pattern: same columns in both rows
                         if cols_row1 == cols_row2:
-                            # We have found an X-Wing, now eliminate the number from other places in the columns
-                            # Eliminate num from other rows in the same columns
                             for r in range(9):
                                 if r != row1 and r != row2:
-                                    # We have found an X-Wing, now eliminate the number from other places in the rows
-                                    # Eliminate num from other columns in the same rows
+                                    # We have found an X-Wing, now eliminate the number from other places in the columns
+                                    # Eliminate num from other rows in the same columns
                                     for col in cols_row1:
                                         if num in self.candidates[r][col]:
                                             self.candidates[r][col] = self.candidates[r][col].replace(num, '')
