@@ -158,64 +158,64 @@ class Sudoku:
         # iterate through every box
         for box_row in range(0, 9, 3):
             for box_col in range(0, 9, 3):
-                    # create a smaller list just for the box
-                    box_values = []
-                    for r in range(box_row, box_row + 3):
-                        for c in range(box_col, box_col + 3):
-                            box_values.append(self.candidates[r][c])
-                    # flatten the box to see easier how often numbers appear in a box
-                    box_values = ''.join(box_values)
+                # create a smaller list just for the box
+                box_values = []
+                for r in range(box_row, box_row + 3):
+                    for c in range(box_col, box_col + 3):
+                        box_values.append(self.candidates[r][c])
+                # flatten the box to see easier how often numbers appear in a box
+                box_values = ''.join(box_values)
 
-                    # 1. search every row in a box
-                    for r in range(box_row, box_row + 3):
-                        # flatten the row and count how often a number appear in a row
-                        row_values = ''.join(self.candidates[r][box_col:box_col + 3])
-                        count = Counter(row_values)
-                        # check every number
-                        for num in '123456789':
-                            # if the number just appears two times in a row, but not in the rest of the box
-                            if count[num] == 2 and count[num] == box_values.count(num):
-                                # track coordinates of all occurrences of num in the row
-                                positions = []
-                                for position_col in range(9):
-                                    if num in self.candidates[r][position_col]:
-                                        positions.append(position_col)
+                # 1. search every row in a box
+                for r in range(box_row, box_row + 3):
+                    # flatten the row and count how often a number appear in a row
+                    row_values = ''.join(self.candidates[r][box_col:box_col + 3])
+                    count = Counter(row_values)
+                    # check every number
+                    for num in '123456789':
+                        # if the number just appears two times in a row, but not in the rest of the box
+                        if count[num] == 2 and count[num] == box_values.count(num):
+                            # track coordinates of all occurrences of num in the row
+                            positions = []
+                            for position_col in range(9):
+                                if num in self.candidates[r][position_col]:
+                                    positions.append(position_col)
 
-                                # delete this number from the rest of the row (outside our box)
-                                for position_col in positions:
-                                    if position_col < box_col or position_col >= box_col + 3:
-                                        self.candidates[r][position_col] = self.candidates[r][position_col].replace(num, '')
-                                        removed += 1
-                                # check if candidates could be deleted because of the pointing pair
-                                if removed > 0:
-                                    print(f"Pointing Pair '{num}' found at {positions} in row {r}, removed {removed} candidates")
-                                    return 1
+                            # delete this number from the rest of the row (outside our box)
+                            for position_col in positions:
+                                if position_col < box_col or position_col >= box_col + 3:
+                                    self.candidates[r][position_col] = self.candidates[r][position_col].replace(num, '')
+                                    removed += 1
+                            # check if candidates could be deleted because of the pointing pair
+                            if removed > 0:
+                                print(f"Pointing Pair '{num}' found at {positions} in row {r}, removed {removed} candidates")
+                                return 1
                                 
                             
-                    # 2. search for column
-                    for c in range(box_col, box_col + 3):
-                        # flatten the column
-                        col_values = ''.join(self.candidates[r][c] for r in range(box_row, box_row + 3))
-                        count = Counter(col_values)
-                        # checking every number in column
-                        for num in '123456789':
-                            # if the number just appears two times in a column, bot not in the rest of the box
-                            if count[num] == 2 and count[num] == box_values.count(num):
-                                # track coordinates of all occurrences of num in the row
-                                positions = []
-                                for position_row in range(9):
-                                    if num in self.candidates[position_row][c]:
-                                        positions.append(position_row)
+                # 2. search for column
+                for c in range(box_col, box_col + 3):
+                    # flatten the column
+                    col_values = ''.join(self.candidates[r][c] for r in range(box_row, box_row + 3))
+                    count = Counter(col_values)
+                    # checking every number in column
+                    for num in '123456789':
+                        # if the number just appears two times in a column, bot not in the rest of the box
+                        if count[num] == 2 and count[num] == box_values.count(num):
+                            # track coordinates of all occurrences of num in the row
+                            positions = []
+                            for position_row in range(9):
+                                if num in self.candidates[position_row][c]:
+                                    positions.append(position_row)
 
-                                # delete this number from the rest of the column (outside our box)
-                                for position_row in positions:
-                                    if position_row < box_row or position_row >= box_row + 3:
-                                        self.candidates[position_row][c] = self.candidates[position_row][c].replace(num, '')
-                                        removed += 1
-                                # check if candidates could be deleted because of the pointing pair
-                                if removed > 0:
-                                    print(f"Pointing Pair '{num}' found at {positions} in column {c}, removed {removed} candidates")
-                                    return 1                        
+                            # delete this number from the rest of the column (outside our box)
+                            for position_row in positions:
+                                if position_row < box_row or position_row >= box_row + 3:
+                                    self.candidates[position_row][c] = self.candidates[position_row][c].replace(num, '')
+                                    removed += 1
+                            # check if candidates could be deleted because of the pointing pair
+                            if removed > 0:
+                                print(f"Pointing Pair '{num}' found at {positions} in column {c}, removed {removed} candidates")
+                                return 1                        
 
         return removed
 
