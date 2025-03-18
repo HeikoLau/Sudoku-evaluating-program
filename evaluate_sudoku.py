@@ -16,6 +16,7 @@ class Sudoku:
 
         # solve Sudoku until no more strategies can be applied
         while(self.count_empty_cells() > 0):
+            # XXX: 'progress' is obsolete, replace with 'solved_count == 0'
             # To track if any progress is made
             progress = False
 
